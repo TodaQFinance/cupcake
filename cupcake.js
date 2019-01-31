@@ -1,0 +1,3 @@
+var renderCupcakeProperties = function(cupcake) {
+
+};
