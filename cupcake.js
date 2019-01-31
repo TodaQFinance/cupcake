@@ -1,12 +1,5 @@
-var renderCupcakeProperties = function(cupcake) {
 
-};
-
-<<<<<<< HEAD
-$(function() {
-
-});
-
+// Rendering concerns
 var setIcing = function(cupcake, color) {
     $("#Icing linearGradient stop[offset=0]", cupcake).css({"stop-color":color});
 };
@@ -40,6 +33,8 @@ var numSprinkles = function(cupcake, num) {
 var setSprinkles = function(cupcake, color) {
     $(".st50, .st51, .st52, .s53, .st54", cupcake).css({"fill":color});
 };
+
+
 
 /*
  * Returns the specification for a candle.
