@@ -32,12 +32,12 @@ function fileTypeSpec(fileTypeId) {
 	}
 }
 
-function createFileRequest (quantity, fileType, initialAccountId) {
+function createFileRequest (quantity, fileType, initialAccountId, payload) {
 	return {
 		"data": {
 			"type":"file",
 			"attributes": {
-				"quantity": quantity
+				quantity, payload
 			},
 			"relationships": {
 				"file-type": fileTypeSpec(fileType),
@@ -81,5 +81,8 @@ function transactFileRequest (senderAccountId, receipientAccountId, fileIds) {
 	}
 }
 
-module.exports = { createIndividualAccountRequest }
+module.exports = { 
+	createIndividualAccountRequest,
+	createFileRequest
+}
 
