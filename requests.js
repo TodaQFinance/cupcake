@@ -1,4 +1,19 @@
 // Data format helpers for interacting with the TODAQ API
+//
+// For additional information, please refer to the official
+// TODAQ API documentation.
+
+// ---- Account creation ---- 
+
+function createIndividualAccountRequest(params) {
+	// FIXME
+	return {
+		"type": "account",
+			"data": {
+				"attributes": params
+			}
+	}
+}
 
 // ---- File creation ---- 
 
@@ -65,4 +80,6 @@ function transactFileRequest (senderAccountId, receipientAccountId, fileIds) {
 		}
 	}
 }
+
+module.exports = { createIndividualAccountRequest }
 

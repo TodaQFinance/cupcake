@@ -1,6 +1,4 @@
-var renderCupcakeProperties = function(cupcake) {
-
-};
+// Cupcake descriptors and constructor
 
 /*
  * Returns the specification for a candle.
@@ -8,10 +6,7 @@ var renderCupcakeProperties = function(cupcake) {
  * isIgnited : a boolean specifying whether the candle has been lit or not
  */ 
 function createCandle(colour, isIgnited) {
-	return { 
-		"colour" : colour,
-		"ignited" : isIgnited
-	}
+	return { colour, isIgnited }
 }
 
 /*
@@ -20,10 +15,10 @@ function createCandle(colour, isIgnited) {
  * quantity : a number specifying the number of sprinkles (it's all about precision)
  */ 
 function createSprinkleLayer(type, quantity) {
-	return { 
-		"type" : type,
-		"quantity" : quantity
-	}
+	return { type, quantity }
 }
 
-
+module.exports = {
+	createCandle,
+	createSprinkleLayer
+}

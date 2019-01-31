@@ -1,0 +1,9 @@
+{
+  "name": "Cupcakes on TODA",
+  "version": "0.0.1",
+  "description": "Because cupcakes are forever.",
+  "dependencies": {
+    "request-promise": "4.2.1"
+  },
+  "license": "MIT"
+}
