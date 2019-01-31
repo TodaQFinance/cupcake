@@ -2,6 +2,7 @@ var renderCupcakeProperties = function(cupcake) {
 
 };
 
+<<<<<<< HEAD
 $(function() {
 
 });
@@ -39,3 +40,27 @@ var numSprinkles = function(cupcake, num) {
 var setSprinkles = function(cupcake, color) {
     $(".st50, .st51, .st52, .s53, .st54", cupcake).css({"fill":color});
 };
+
+/*
+ * Returns the specification for a candle.
+ * colour : a string describing the colour of the cupcake
+ * isIgnited : a boolean specifying whether the candle has been lit or not
+ */ 
+function createCandle(colour, isIgnited) {
+	return { 
+		"colour" : colour,
+		"ignited" : isIgnited
+	}
+}
+
+/*
+ * Returns the specification for a layer of sprinkles.
+ * type : a string describing the type of sprinkles in this layer
+ * quantity : a number specifying the number of sprinkles (it's all about precision)
+ */ 
+function createSprinkleLayer(type, quantity) {
+	return { 
+		"type" : type,
+		"quantity" : quantity
+	}
+}
