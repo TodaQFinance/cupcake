@@ -34,6 +34,38 @@ var setSprinkles = function(cupcake, color) {
     $(".st50, .st51, .st52, .s53, .st54", cupcake).css({"fill":color});
 };
 
+var flavourColours = {"chocolate": "#FF0000", "vanilla": "#FFFFBB"};
+var icingColours = {"chocolate": "#FF0000", "vanilla": "#FFFFBB"};
+var sprinklesColours = {"chocolate": "#FF0000"};
+var candleColours = {"blue":"#0000FF"};
+
+var renderCupcake = function(cupcake) {
+    var el = $("#cupcake").clone();
+    if (cupcake.flavour && cupcake.flavour in flavourColours) {
+	setFilling(el, flavourColours[cupcake.flavour]);
+    }
+    if (cupcake.icing && cupcake.icing in icingColours) {
+	setIcing(el, icingColours[cupcake.icing]);
+    }
+    if (cupcake.sprinkles && cupcake.sprinkles.quantity) {
+	numSprinkles(el, cupcake.sprinkles.quantity);
+    }
+    if (cupcake.sprinkles && cupcake.sprinkles.type in sprinklesColours) {
+	setSprinkles = setSprinkles(el, sprinklesColours[cupcake.sprinkles.type]);
+    }
+    if (cupcake.candle && cupcake.candle.colour in candleColours) {
+	setCandle(el, candleColours[cupcake.candle.colour]);
+    }
+    el.css({'width':300}); // for now
+    el.show();
+    return el;
+};
+
+
+// EXAMPLE:
+$(function() {
+    $("body").append(renderCupcake({}));
+});
 
 
 /*
