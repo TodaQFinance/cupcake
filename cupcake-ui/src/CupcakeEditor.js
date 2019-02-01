@@ -1,11 +1,5 @@
 import React, { Component } from 'react';
 
-const flavourColours = {"chocolate": "#FF0000", "vanilla": "#FFFFBB"};
-const icingColours = {"chocolate": "#FF0000", "vanilla": "#FFFFBB"};
-const sprinklesColours = {"chocolate": "#FF0000", "green": "#00FF00"};
-const candleColours = {"blue":"#0000FF", "red":"#FF0000"};
-
-
 /*
 var renderCupcake = function(cupcake) {
     var el = $("#cupcake").clone();
@@ -30,13 +24,15 @@ var renderCupcake = function(cupcake) {
 };
 */
 
-function DropDown({label, items, value}) {
+function DropDown({label, items, value, onChange}) {
+  if(!onChange) { onChange = e => {}; }
+  
   return (
     <div className="form-group col-md-3">
       <label>{label}</label>
-      <select className="form-control">
+      <select className="form-control" value={value} onChange={evt => onChange(items[evt.target.value])}>
         {Object.entries(items).map(c => {
-          return <option key={c[1]} value={c[1]} selected={c[0]===value}>{c[0]}</option>
+          return <option key={c[1]} value={c[1]}>{c[0]}</option>
         })}
       </select>
     </div>
@@ -65,15 +61,27 @@ function DropDown({label, items, value}) {
 class CupcakeEditor extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      cupcake: props.cupcake,
+    };
+  }
+
+  onChange() {
+    console.log("Change");
+  }
+
+  onBake() {
+    this.props.onBake(this.state.cupcake);
   }
 
   render() {
-    const {flavour, icing, sprinkles, candle, temperature} = this.props.cupcake;
+    const {flavourColours, icingColours, sprinklesColours, candleColours} = this.props;
+    const {flavour, icing, sprinkles, candle, temperature} = this.state.cupcake;
 
     return (
       <form>
         <div className="form-row">
-          <DropDown label="Flavour" items={flavourColours} value={flavour} />
+          <DropDown label="Flavour" items={flavourColours} value={flavour} onChange={this.onChange} />
           <DropDown label="Icing" items={icingColours} value={icing} />
         </div>
 

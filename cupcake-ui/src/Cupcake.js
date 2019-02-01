@@ -14,26 +14,26 @@ class Cupcake extends Component {
     super(props);
   }
 
-  onInjected = ({icingColor, fillingColor, paperColor, candleColor, numSprinkles, sprinklesColor}, error, element) => {
+  onInjected = ({icingColour, flavourColour, paperColour, candleColour, numSprinkles, sprinklesColour}, error, element) => {
     // Icing
-    setCss(element, "#Icing linearGradient stop[offset='0']", 'stopColor', icingColor);
+    setCss(element, "#Icing linearGradient stop[offset='0']", 'stopColor', icingColour);
 
     // Filling
-    setCss(element, "#Base > linearGradient stop[offset='0']", "stopColor", fillingColor);
-    setCss(element, "#Base > linearGradient stop[offset='1']", "stopColor", fillingColor);
+    setCss(element, "#Base > linearGradient stop[offset='0']", "stopColor", flavourColour);
+    setCss(element, "#Base > linearGradient stop[offset='1']", "stopColor", flavourColour);
     
     // Paper
-    setCss(element, "#Base g linearGradient stop[offset='0']", "stopColor", paperColor);
-    setCss(element, "#Base g linearGradient stop[offset='1']", "stopColor", paperColor);
+    setCss(element, "#Base g linearGradient stop[offset='0']", "stopColor", paperColour);
+    setCss(element, "#Base g linearGradient stop[offset='1']", "stopColor", paperColour);
 
     // Candle
-    setCss(element, "#Candle > linearGradient stop[offset='0']", "stopColor", candleColor);
+    setCss(element, "#Candle > linearGradient stop[offset='0']", "stopColor", candleColour);
     //also have stops at 1, 0.1056 (light), 0.367, 0.8522
-    setCss(element, "#Candle > linearGradient stop[offset='0.367']", "stopColor", candleColor);
-    setCss(element, "#Candle > linearGradient stop[offset='0.8522']", "stopColor", candleColor);
+    setCss(element, "#Candle > linearGradient stop[offset='0.367']", "stopColor", candleColour);
+    setCss(element, "#Candle > linearGradient stop[offset='0.8522']", "stopColor", candleColour);
 
     // Sprinkles
-    setCss(element, ".st50, .st51, .st52, .s53, .st54", "fill", sprinklesColor);
+    setCss(element, ".st50, .st51, .st52, .s53, .st54", "fill", sprinklesColour);
     setCss(element, "#Sprinkles *", "display", "none");
     if(numSprinkles > 0) {
       setCss(element, "#Sprinkles :nth-child(1)", "display", "initial");
