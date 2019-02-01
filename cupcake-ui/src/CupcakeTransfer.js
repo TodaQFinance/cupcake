@@ -40,24 +40,22 @@ class AccountSelector extends Component {
 class AccountPanel extends Component {
   constructor(props) {
     super(props);
-    
-    this.state = {
-      account: props.account,
-      cupcakes: props.cupcakes,
-    };
   }
 
   render() {
-    const {onSelect, onLoad} = this.props;
-    const {account, cupcakes} = this.state;
+    const {account, cupcakes, onSelect, onLoad, selected} = this.props;
 
     return (
       <div>
         <AccountSelector account={account} onLoad={onLoad} />
         <div>
           {cupcakes.map(c => {
+            const className = classnames("cupcake-row", {
+              "cupcake-row-selected": c.id == (selected && selected.id),
+            });
+
             return (
-              <div className="cupcake-row" key={c.id} onClick={evt => onSelect(c)}>
+              <div className={className} key={c.id} onClick={evt => onSelect(c)}>
                 Cupcake - {c.id}
               </div>
             );
@@ -120,6 +118,7 @@ class CupcakeTransfer extends Component {
           <AccountPanel 
             account={left.account} 
             cupcakes={left.cupcakes} 
+            selected={selectedCupcake}
             onLoad={this.onLoad.bind(this, 'left')}
             onSelect={this.onCupcakeSelect.bind(this, left.account)} />
         </div>
@@ -135,6 +134,7 @@ class CupcakeTransfer extends Component {
           <AccountPanel 
             account={right.account} 
             cupcakes={right.cupcakes} 
+            selected={selectedCupcake}
             onLoad={this.onLoad.bind(this, 'right')}
             onSelect={this.onCupcakeSelect.bind(this, right.account)} />
         </div>
