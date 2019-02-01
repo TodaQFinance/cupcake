@@ -18,6 +18,10 @@
   color: white;
 }
 
+.panel {
+  margin-top: 50px;
+}
+
 .form-check {
   top: 38px;
 }

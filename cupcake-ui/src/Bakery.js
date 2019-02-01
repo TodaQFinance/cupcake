@@ -32,31 +32,30 @@ class Bakery extends Component {
     const {flavour, icing, sprinkles, candle, temperature} = cupcake;
     
     return (
-      <div className="row">
-        
-<div className="col-md-8">
-        <CupcakeEditor 
-          flavourColours={flavourColours}
-          icingColours={icingColours}
-          sprinklesColours={sprinklesColours}
-          candleColours={candleColours}
-          onChange={this.updateCupcakeState}
-          onBake={this.onBake}
-          cupcake={cupcake} />
+      <div className="row panel">
+        <div className="col-md-8">
+          <CupcakeEditor 
+            flavourColours={flavourColours}
+            icingColours={icingColours}
+            sprinklesColours={sprinklesColours}
+            candleColours={candleColours}
+            onChange={this.updateCupcakeState}
+            onBake={this.onBake}
+            cupcake={cupcake} />
           </div>
-          <div className="col-md-4">
-        {/*
-          Due to ID's being used in the SVG you can only include one cupcake at a time or they will overwrite eachothers
-          styles.
-          */}
-        <Cupcake 
-          flavourColour={flavourColours[flavour]}
-          icingColour={icingColours[icing]}  
-          sprinklesColour={sprinklesColours[sprinkles.colour]}
-          numSprinkles={sprinkles.quantity}
-          candleColour={candleColours[candle.colour]}
-          candleIgnited={candle.ignited} />
-</div>
+        <div className="col-md-4">
+          {/*
+            Due to ID's being used in the SVG you can only include one cupcake at a time or they will overwrite eachothers
+            styles.
+            */}
+          <Cupcake 
+            flavourColour={flavourColours[flavour]}
+            icingColour={icingColours[icing]}  
+            sprinklesColour={sprinklesColours[sprinkles.colour]}
+            numSprinkles={sprinkles.quantity}
+            candleColour={candleColours[candle.colour]}
+            candleIgnited={candle.ignited} />
+        </div>
       </div>
     );
   }
