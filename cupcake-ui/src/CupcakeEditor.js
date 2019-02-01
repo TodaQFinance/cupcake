@@ -5,7 +5,7 @@ function DropDown({label, items, value, onChange}) {
 
   return (
     <div className="form-group col-md-4">
-      <label>{label} - {value}</label>
+      <label>{label}</label>
       <select className="form-control" value={value} onChange={onChange}>
         {Object.entries(items).map(c => {
           return <option key={c[0]} value={c[0]}>{c[0]}</option>
