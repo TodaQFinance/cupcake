@@ -28,7 +28,7 @@ class Bakery extends Component {
 
   render() {
     const {cupcake} = this.props;
-
+    
     if (!cupcake) {return null;}
 
     const {flavour, icing, sprinkles, candle, temperature} = cupcake;

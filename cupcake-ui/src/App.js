@@ -7,14 +7,14 @@ import CupcakeTransfer from './CupcakeTransfer';
 // Base Cupcake
 const cupcakeBase = {
   id: null,
-  flavour: "chocolate",
-  icing: "chocolate",
+  flavour: "Chocolate",
+  icing: "Chocolate",
   sprinkles: {
-    colour: "chocolate",
+    colour: "Chocolate",
     quantity: 20,
   },
   candle: {
-    colour: "blue",
+    colour: "Blue",
     remaining: 20,
     ignited: true,
   },
@@ -28,11 +28,11 @@ class App extends Component {
       cupcake: cupcakeBase,
       left: {
         account: "1234",
-        cupcakes: [{...cupcakeBase, id: 1}, {...cupcakeBase, id: 2}, {...cupcakeBase, id: 3}]
+        cupcakes: [{...cupcakeBase, id: 1, flavour: "Vanilla"}, {...cupcakeBase, id: 2, icing: "Vanilla"}, {...cupcakeBase, id: 3}]
       },
       right: {
         account: "789",
-        cupcakes: [{...cupcakeBase, id: 4}, {...cupcakeBase, id: 5}]
+        cupcakes: [{...cupcakeBase, id: 4, sprinkles: { colour: "Red", quantity: 40}}, {...cupcakeBase, id: 5}]
       }
     };
   }

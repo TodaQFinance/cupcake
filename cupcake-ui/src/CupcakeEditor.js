@@ -5,7 +5,7 @@ function DropDown({label, items, value, onChange}) {
 
   return (
     <div className="form-group col-md-4">
-      <label>{label}</label>
+      <label>{label} - {value}</label>
       <select className="form-control" value={value} onChange={onChange}>
         {Object.entries(items).map(c => {
           return <option key={c[0]} value={c[0]}>{c[0]}</option>
@@ -19,14 +19,14 @@ function DropDown({label, items, value, onChange}) {
  * Object used for incoming props and outgoing changes on bake
  * {
  *  cupcake: {
- *    flavour: "chocolate",
- *    icing: "chocolate",
+ *    flavour: "Chocolate",
+ *    icing: "Chocolate",
  *    sprinkles: {
- *      colour: "chocolate",
+ *      colour: "Chocolate",
  *      quantity: 20,
  *    },
  *    candle: {
- *      colour: "blue",
+ *      colour: "Blue",
  *      remaining: 20,
  *      ignited: true,
  *    },
