@@ -1,21 +1,14 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<!-- Required meta tags -->
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	 
-		<title>cupcakes on toda</title>
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-	</head>
-<body>
-	<h3>Design a cupcake</h3>
-	
-	<svg version="1.1"
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
+    <!ENTITY ns_flows "http://ns.adobe.com/Flows/1.0/">
+    <!ENTITY ns_extend "http://ns.adobe.com/Extensibility/1.0/">
+    <!ENTITY ns_ai "http://ns.adobe.com/AdobeIllustrator/10.0/">
+    <!ENTITY ns_graphs "http://ns.adobe.com/Graphs/1.0/">
+]>
+<svg version="1.1"
 		id="cupcake"
 	xmlns:x="&ns_extend;" xmlns:i="&ns_ai;" xmlns:graph="&ns_graphs;" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:svg="http://www.w3.org/2000/svg"
 		xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 160.5 233.2"
-		style="display:none; enable-background:new 0 0 160.5 233.2;" xml:space="preserve">
+		xml:space="preserve">
 	<style type="text/css">
 		.st0{display:none;opacity:0.35;fill:#1A1A1A;enable-background:new    ;}
 		.st1{fill:url(#path8735_1_);}
@@ -729,71 +722,3 @@
 		</g>
 	</switch>
 	</svg>
-
-	<form id="cupcake-editor">
-		<div class="form-row">
-			<div class="form-group col-md-6">
-				<label for="inputEmail4">Email</label>
-				<input type="email" class="form-control" id="inputEmail4" placeholder="Email">
-			</div>
-			<div class="form-group col-md-6">
-			<label for="inputPassword4">Password</label>
-			<input type="password" class="form-control" id="inputPassword4" placeholder="Password">
-			</div>
-		</div>
-		<div class="form-group">
-			<label for="inputAddress">Address</label>
-			<input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-		</div>
-		<div class="form-group">
-			<label for="inputAddress2">Address 2</label>
-			<input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-		</div>
-		<div class="form-row">
-			<div class="form-group col-md-6">
-			<label for="inputCity">Flavour</label>
-			<input type="text" class="form-control" id="inputCity">
-			</div>
-			<div class="form-group col-md-4">
-			<label for="inputState">State</label>
-			<select id="inputState" class="form-control">
-				<option value="Chocolate">Choose...</option>
-				<option>...</option>
-			</select>
-			</div>
-			<div class="form-group col-md-2">
-			<label for="inputZip">Zip</label>
-			<input type="text" class="form-control" id="inputZip">
-			</div>
-		</div>
-		<div class="form-group">
-			<div class="form-check">
-			<input class="form-check-input" type="checkbox" id="gridCheck">
-			<label class="form-check-label" for="gridCheck">
-				Check me out
-			</label>
-			</div>
-		</div>
-		<button type="submit" class="btn btn-primary">Sign in</button>
-		</form>
-
-		<div id="root"></div>
-    <script type="text/babel">
-
-      ReactDOM.render(
-        <h1>Hello, world!</h1>,
-        document.getElementById('root')
-      );
-
-    </script>
-
-	<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-	<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin=""></script>
-	<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin=""></script>
-	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-	<script src="cupcake.js"></script>
-
-</body>
-</html>
