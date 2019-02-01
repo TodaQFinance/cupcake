@@ -1,34 +1,10 @@
 import React, { Component } from 'react';
 
-/*
-var renderCupcake = function(cupcake) {
-    var el = $("#cupcake").clone();
-    if (cupcake.flavour && cupcake.flavour in flavourColours) {
-	setFilling(el, flavourColours[cupcake.flavour]);
-    }
-    if (cupcake.icing && cupcake.icing in icingColours) {
-	setIcing(el, icingColours[cupcake.icing]);
-    }
-    if (cupcake.sprinkles && cupcake.sprinkles.quantity) {
-	numSprinkles(el, cupcake.sprinkles.quantity);
-    }
-    if (cupcake.sprinkles && cupcake.sprinkles.type in sprinklesColours) {
-	setSprinkles(el, sprinklesColours[cupcake.sprinkles.type]);
-    }
-    if (cupcake.candle && cupcake.candle.colour in candleColours) {
-	setCandle(el, candleColours[cupcake.candle.colour]);
-    }
-    el.css({'width':300}); // for now
-    el.show();
-    return el;
-};
-*/
-
 function DropDown({label, items, value, onChange}) {
   if(!onChange) { onChange = e => {}; }
 
   return (
-    <div className="form-group col-md-3">
+    <div className="form-group col-md-4">
       <label>{label}</label>
       <select className="form-control" value={value} onChange={onChange}>
         {Object.entries(items).map(c => {
@@ -105,7 +81,7 @@ class CupcakeEditor extends Component {
             value={sprinkles.colour} 
             onChange={this.onChange((c, v) => c.sprinkles.colour = v)} />
 
-          <div className="form-group col-md-2">
+          <div className="form-group col-md-4">
             <label>Sprinkles Quantity</label>
             <input 
               type="number" 
@@ -123,7 +99,7 @@ class CupcakeEditor extends Component {
             value={candle.colour} 
             onChange={this.onChange((c, v) => c.candle.colour = v)} />
 
-          <div className="form-group col-md-2">
+          <div className="form-group col-md-4">
             <label>Remaining</label>
             <input
               type="number" 
@@ -132,7 +108,7 @@ class CupcakeEditor extends Component {
               value={candle.remaining} 
               onChange={this.onChange((c, v) => c.candle.remaining = parseInt(v, 10))} />
           </div>
-          <div className="form-group col-md-2">
+          <div className="form-group col-md-4">
             <div className="form-check">
               <input 
                 className="form-check-input" 
@@ -146,7 +122,7 @@ class CupcakeEditor extends Component {
 
         {/* Temperature */}
         <div className="form-row">
-          <div className="form-group col-md-2">
+          <div className="form-group col-md-4">
             <label>Temperature</label>
             <input 
               type="number" 
