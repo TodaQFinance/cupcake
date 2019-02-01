@@ -9,7 +9,7 @@ function setCss(element, selector, style, value) {
   });
 }
 
-class App extends Component {
+class Cupcake extends Component {
   constructor(props) {
     super(props);
   }
@@ -41,15 +41,13 @@ class App extends Component {
         setCss(element, "#Sprinkles :nth-child(" + (i + 4) + ")", "display", "initial");
       }
     }
-
-    
   }
 
   render() {
     return (
-        <ReactSVG src={cupcakeSvg} svgClassName="cupcake-svg" onInjected={this.onInjected.bind(null, this.props)} />
+      <ReactSVG src={cupcakeSvg} svgClassName="cupcake-svg" onInjected={this.onInjected.bind(null, this.props)} />
     );
   }
 }
 
-export default App;
+export default Cupcake;
