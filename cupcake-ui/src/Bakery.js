@@ -12,13 +12,6 @@ const candleColours = {"Blue":"#0000FF", "Red":"#FF0000"};
 class Bakery extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      cupcake: this.props.cupcake,
-    };
-  }
-
-  updateCupcakeState = cupcake => {
-    this.setState({ cupcake });
   }
 
   onBake = cupcake => {
@@ -27,8 +20,17 @@ class Bakery extends Component {
     }
   }
 
+  onChange = cupcake => {
+    if(this.props.onChange) {
+      this.props.onChange(cupcake);
+    }
+  }
+
   render() {
-    const {cupcake} = this.state;
+    const {cupcake} = this.props;
+
+    if (!cupcake) {return null;}
+
     const {flavour, icing, sprinkles, candle, temperature} = cupcake;
     
     return (
@@ -39,7 +41,7 @@ class Bakery extends Component {
             icingColours={icingColours}
             sprinklesColours={sprinklesColours}
             candleColours={candleColours}
-            onChange={this.updateCupcakeState}
+            onChange={this.onChange}
             onBake={this.onBake}
             cupcake={cupcake} />
           </div>

@@ -40,32 +40,33 @@ function DropDown({label, items, value, onChange}) {
 class CupcakeEditor extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      cupcake: props.cupcake,
-    };
   }
 
   onChange = fn => {
-    const cupcake = JSON.parse(JSON.stringify(this.state.cupcake)); // Hack for deep copy
+    const cupcake = JSON.parse(JSON.stringify(this.props.cupcake)); // Hack for deep copy
 
     return (evt) => {
       const value = evt.target.type === "checkbox" ? evt.target.checked : evt.target.value;
 
       fn(cupcake, value); // Update cupcake
-      this.setState({ cupcake });
-      this.props.onChange(cupcake);
+
+      if(this.props.onChange) {
+        this.props.onChange(cupcake);
+      }
     }
   }
 
   onBake = evt => {
     evt.preventDefault();
 
-    this.props.onBake(this.state.cupcake);
+    if(this.props.onBake) {
+      this.props.onBake(this.props.cupcake);
+    }
   }
 
   render() {
-    const {flavourColours, icingColours, sprinklesColours, candleColours} = this.props;
-    const {flavour, icing, sprinkles, candle, temperature} = this.state.cupcake;
+    const {cupcake, flavourColours, icingColours, sprinklesColours, candleColours} = this.props;
+    const {flavour, icing, sprinkles, candle, temperature} = cupcake;
 
     return (
       <form>

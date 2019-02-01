@@ -57,7 +57,7 @@ class AccountPanel extends Component {
         <div>
           {cupcakes.map(c => {
             return (
-              <div className="cupcake-row" key={c.id} onClick={evt => onSelect(c.id)}>
+              <div className="cupcake-row" key={c.id} onClick={evt => onSelect(c)}>
                 Cupcake - {c.id}
               </div>
             );
@@ -72,21 +72,47 @@ class CupcakeTransfer extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      leftAccount: props.left && props.left.account,
+      rightAccount: props.right && props.right.account,
+      selectedAccount: -1,
+      selectedCupcake: null,
       left: props.left,
       right: props.right,
     };
   }
 
   onLoad = (side, account) => {
+    // TODO: Load from server
+
     console.log("On Load", side, account);
+
+    if(side === "left") {
+      this.setState({leftAccount: account, rightAccount: null});
+    } else if(side === "right") {
+      this.setState({rightAccount: account, leftAccount: null});
+    }
   }
 
-  onCupcakeSelect = (account, id) => {
-    this.setState({ selected: id });
+  onCupcakeSelect = (account, cupcake) => {
+    this.setState({ 
+      selectedAccount: account,
+      selectedCupcake: cupcake,
+    });
+
+    if(this.props.onCupcakeSelect) { this.props.onCupcakeSelect(cupcake); }
+  }
+
+  onTransfer = (fromAccount, toAccount, cupcake) => {
+    if(this.props.onTransfer) {
+      this.props.onTransfer(fromAccount, toAccount, cupcake);
+    }
   }
 
   render() {
-    const {left, right, selected} = this.state;
+    const {left, right, selectedAccount, selectedCupcake, leftAccount, rightAccount} = this.state;
+    const leftToRight = selectedAccount === leftAccount;
+    const fromAccount = leftToRight ? leftAccount : rightAccount;
+    const toAccount = leftToRight ? rightAccount : leftAccount;
 
     return (
       <div className="row panel">
@@ -98,7 +124,12 @@ class CupcakeTransfer extends Component {
             onSelect={this.onCupcakeSelect.bind(this, left.account)} />
         </div>
         <div className="col-md-2">
-        Middle
+          {selectedAccount && selectedCupcake ? (
+            <button type="button" className="btn btn-secondary mb-2"
+              onClick={this.onTransfer.bind(this, leftAccount, rightAccount, selectedCupcake)}>
+              {!leftToRight ? "<-" : null} Transfer {leftToRight ? "->" : null}
+            </button>
+          ) : null}
         </div>
         <div className="col-md-5">
           <AccountPanel 
