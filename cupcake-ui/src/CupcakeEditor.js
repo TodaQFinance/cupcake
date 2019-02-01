@@ -26,13 +26,13 @@ var renderCupcake = function(cupcake) {
 
 function DropDown({label, items, value, onChange}) {
   if(!onChange) { onChange = e => {}; }
-  
+
   return (
     <div className="form-group col-md-3">
       <label>{label}</label>
-      <select className="form-control" value={value} onChange={evt => onChange(items[evt.target.value])}>
+      <select className="form-control" value={value} onChange={onChange}>
         {Object.entries(items).map(c => {
-          return <option key={c[1]} value={c[1]}>{c[0]}</option>
+          return <option key={c[0]} value={c[0]}>{c[0]}</option>
         })}
       </select>
     </div>
@@ -57,6 +57,9 @@ function DropDown({label, items, value, onChange}) {
  *    temperature: 50,
  *  }
  * }
+ * 
+ * onBake(cupcake) - Fired when the bake button is clicked
+ * onChange(cupcake) - Fired when anything is changed
  */
 class CupcakeEditor extends Component {
   constructor(props) {
@@ -66,11 +69,21 @@ class CupcakeEditor extends Component {
     };
   }
 
-  onChange() {
-    console.log("Change");
+  onChange = fn => {
+    const cupcake = JSON.parse(JSON.stringify(this.state.cupcake)); // Hack for deep copy
+
+    return (evt) => {
+      const value = evt.target.type === "checkbox" ? evt.target.checked : evt.target.value;
+
+      fn(cupcake, value); // Update cupcake
+      this.setState({ cupcake });
+      this.props.onChange(cupcake);
+    }
   }
 
-  onBake() {
+  onBake = evt => {
+    evt.preventDefault();
+
     this.props.onBake(this.state.cupcake);
   }
 
@@ -81,29 +94,51 @@ class CupcakeEditor extends Component {
     return (
       <form>
         <div className="form-row">
-          <DropDown label="Flavour" items={flavourColours} value={flavour} onChange={this.onChange} />
-          <DropDown label="Icing" items={icingColours} value={icing} />
+          <DropDown label="Flavour" items={flavourColours} value={flavour} onChange={this.onChange((c, v) => c.flavour = v)} />
+          <DropDown label="Icing" items={icingColours} value={icing} onChange={this.onChange((c, v) => c.icing = v)} />
         </div>
 
         {/* Sprinkles */}
         <div className="form-row">
-          <DropDown label="Sprinkles" items={sprinklesColours} value={sprinkles.colour} />
+          <DropDown label="Sprinkles" 
+            items={sprinklesColours} 
+            value={sprinkles.colour} 
+            onChange={this.onChange((c, v) => c.sprinkles.colour = v)} />
+
           <div className="form-group col-md-2">
             <label>Sprinkles Quantity</label>
-            <input type="number" className="form-control" value={sprinkles.quantity} />
+            <input 
+              type="number" 
+              className="form-control" 
+              value={sprinkles.quantity} 
+              onChange={this.onChange((c, v) => c.sprinkles.quantity = parseInt(v, 10))} />
           </div>
         </div>
         
         {/* Candles */}
         <div className="form-row">
-          <DropDown label="Candle Color" items={candleColours} value={candle.colour} />
+          <DropDown 
+            label="Candle Color" 
+            items={candleColours} 
+            value={candle.colour} 
+            onChange={this.onChange((c, v) => c.candle.colour = v)} />
+
           <div className="form-group col-md-2">
             <label>Remaining</label>
-            <input type="number" min={0} max={100} className="form-control" value={candle.remaining} />
+            <input
+              type="number" 
+              min={0} max={100} 
+              className="form-control" 
+              value={candle.remaining} 
+              onChange={this.onChange((c, v) => c.candle.remaining = parseInt(v, 10))} />
           </div>
           <div className="form-group col-md-2">
             <div className="form-check">
-              <input className="form-check-input" type="checkbox" checked={candle.ignited} />
+              <input 
+                className="form-check-input" 
+                type="checkbox" 
+                checked={candle.ignited} 
+                onChange={this.onChange((c, v) => c.candle.ignited = v)} />
               <label className="form-check-label">Ignited</label>
             </div>
           </div>
@@ -113,11 +148,15 @@ class CupcakeEditor extends Component {
         <div className="form-row">
           <div className="form-group col-md-2">
             <label>Temperature</label>
-            <input type="number" className="form-control" value={temperature} />
+            <input 
+              type="number" 
+              className="form-control" 
+              value={temperature}
+              onChange={this.onChange((c, v) => c.temperature = parseInt(v, 10))} />
           </div>
         </div>
 
-        <button className="btn btn-primary">Bake</button>
+        <button className="btn btn-primary" onClick={this.onBake}>Bake</button>
       </form>
     );
   }

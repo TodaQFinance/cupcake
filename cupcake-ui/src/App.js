@@ -32,6 +32,16 @@ class App extends Component {
     };
   }
 
+  updateCupcakeState = cupcake => {
+    this.setState({ cupcake });
+  }
+
+  onBake = cupcake => {
+    this.updateCupcakeState(cupcake);
+
+    console.log("Baking Cupcake", cupcake);
+  }
+
   render() {
     const {flavour, icing, sprinkles, candle, temperature} = this.state.cupcake;
     
@@ -43,16 +53,19 @@ class App extends Component {
           */}
         <Cupcake 
           flavourColour={flavourColours[flavour]}
-          icingColour={icingColours[flavour]}  
+          icingColour={icingColours[icing]}  
           sprinklesColour={sprinklesColours[sprinkles.colour]}
           numSprinkles={sprinkles.quantity}
-          candleColour={candleColours[candle.colour]} />
+          candleColour={candleColours[candle.colour]}
+          candleIgnited={candle.ignited} />
 
         <CupcakeEditor 
           flavourColours={flavourColours}
           icingColours={icingColours}
           sprinklesColours={sprinklesColours}
           candleColours={candleColours}
+          onChange={this.updateCupcakeState}
+          onBake={this.onBake}
           cupcake={cupcake} />
       </div>
     );

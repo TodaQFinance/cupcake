@@ -14,7 +14,7 @@ class Cupcake extends Component {
     super(props);
   }
 
-  onInjected = ({icingColour, flavourColour, paperColour, candleColour, numSprinkles, sprinklesColour}, error, element) => {
+  onInjected = ({icingColour, flavourColour, paperColour, candleColour, candleIgnited, numSprinkles, sprinklesColour}, error, element) => {
     // Icing
     setCss(element, "#Icing linearGradient stop[offset='0']", 'stopColor', icingColour);
 
@@ -31,6 +31,7 @@ class Cupcake extends Component {
     //also have stops at 1, 0.1056 (light), 0.367, 0.8522
     setCss(element, "#Candle > linearGradient stop[offset='0.367']", "stopColor", candleColour);
     setCss(element, "#Candle > linearGradient stop[offset='0.8522']", "stopColor", candleColour);
+    setCss(element, "#path8612, #path8615, #path8617", 'display', candleIgnited ? 'initial' : 'none');
 
     // Sprinkles
     setCss(element, ".st50, .st51, .st52, .s53, .st54", "fill", sprinklesColour);
