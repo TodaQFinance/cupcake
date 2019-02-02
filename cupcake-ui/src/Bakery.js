@@ -4,10 +4,10 @@ import './App.css';
 import Cupcake from './Cupcake';
 import CupcakeEditor from './CupcakeEditor';
 
-const flavourColours = {"Chocolate": "#FF0000", "Vanilla": "#FFFFBB"};
-const icingColours = {"Chocolate": "#FF0000", "Vanilla": "#FFFFBB"};
-const sprinklesColours = {"Chocolate": "#FF0000", "Green": "#00FF00"};
-const candleColours = {"Blue":"#0000FF", "Red":"#FF0000"};
+const flavourColours = {"Chocolate": "#612D00", "Vanilla": "#FFFFBB"};
+const icingColours = {"Chocolate": "#332202", "Vanilla": "#FFFFBB"};
+const sprinklesColours = {"Chocolate": "#332202", "Green": "#00FF00", "Rainbow":null};
+const candleColours = {"Blue":"#0000FF", "Red":"#FF0000", "Pink":"#FF04E4"};
 
 class Bakery extends Component {
   constructor(props) {

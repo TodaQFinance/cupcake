@@ -19,7 +19,8 @@ class Cupcake extends Component {
     setCss(element, "#Icing linearGradient stop[offset='0']", 'stopColor', icingColour);
 
     // Filling
-    setCss(element, "#Base > linearGradient stop[offset='0']", "stopColor", flavourColour);
+      setCss(element, "#Base > linearGradient stop[offset='0']", "stopColor", flavourColour);
+      setCss(element, "#Base > linearGradient stop[offset='0.3464']", "stopColor", flavourColour);
     setCss(element, "#Base > linearGradient stop[offset='1']", "stopColor", flavourColour);
     
     // Paper
@@ -33,8 +34,10 @@ class Cupcake extends Component {
     setCss(element, "#Candle > linearGradient stop[offset='0.8522']", "stopColor", candleColour);
     setCss(element, "#path8612, #path8615, #path8617", 'display', candleIgnited ? 'initial' : 'none');
 
-    // Sprinkles
-    setCss(element, ".st50, .st51, .st52, .s53, .st54", "fill", sprinklesColour);
+      // Sprinkles
+      if(sprinklesColour) {
+	  setCss(element, ".st50, .st51, .st52, .s53, .st54", "fill", sprinklesColour);
+      }
     setCss(element, "#Sprinkles *", "display", "none");
     if(numSprinkles > 0) {
       setCss(element, "#Sprinkles :nth-child(1)", "display", "initial");
