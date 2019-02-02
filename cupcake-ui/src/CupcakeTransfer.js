@@ -86,67 +86,29 @@ class CupcakeTransfer extends Component {
     };
   }
 
-  onLoad = (side, account) => {
+	onLoad = (side, account) => {
 		var that = this;
-		toda.apiGetRequest('/accounts/' + account + "/files")
-		  .catch(function(e) {
-				console.log(e);
-			})
-			.then(function(filesData) {
-				if (filesData.meta['total-results'] > 0) {
-					//console.log(filesData.data)
-
-					if(side === "left") {
-						that.setState({
-							leftAccount: account, 
-							left: { cupcakes: [filesData.data], account: account }});
-					} 
-					else if(side === "right") {
-						console.log(filesData);
-						that.setState({
-							rightAccount: account,
-							right: { cupcakes: [filesData.data], account: account }});
-						console.log(that.state);
-					}
-				}
-			}
-			);
+		// FIXME
+			
 	}
 
 	onCupcakeSelect = (account, cupcake) => {
 		alert(JSON.stringify(cupcake));
-		//toda.apiGetRequest('/files' + cupcake.id + 'meta')
-		//.then(console.log);
-
-		console.log(account);
 
     this.setState({ 
       selectedAccount: account,
       selectedCupcake: cupcake,
     });
 
-		console.log(this.state);
-
     //if(this.props.onCupcakeSelect) { this.props.onCupcakeSelect(cupcake); }
   }
 
   onTransfer = (fromAccount, toAccount, cupcake) => { 
-		console.log('tx')
-		console.log(fromAccount, toAccount, cupcake)
+		console.log('tx');
+		console.log(fromAccount, toAccount, cupcake);
 		if (fromAccount && toAccount && cupcake) {
-			// api
+			// FIXME
 			let id = cupcake.id;
-			let request = apiRequests.transactFileRequest(fromAccount,toAccount,[id]);
-			console.log('=====');
-			console.log(request);
-			toda.apiPostRequest('/transactions', request)
-				.catch(function(e) {
-					console.log(e);
-				})
-				.then(function(res) {
-					console.log(res);
-				});
-
 			// base
 			if(this.props.onTransfer) {
 				this.props.onTransfer(fromAccount, toAccount, cupcake);

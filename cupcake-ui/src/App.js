@@ -25,11 +25,11 @@ class App extends Component {
     this.state = {
       cupcake: cupcakeBase,
       left: {
-        account: '4e0ed006-4fe0-46e3-9a05-c928640a4e05',
-        cupcakes: [] // no cupcakes to start
+        account: '', // FIXME
+        cupcakes: []
       },
       right: {
-        account: "18ebfbe7-1416-4a1a-bdcc-9728076b5b99",
+        account: "", // FIXME
         cupcakes: []
       }
     };
