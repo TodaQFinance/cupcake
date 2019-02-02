@@ -115,6 +115,9 @@ class CupcakeTransfer extends Component {
 
 	onCupcakeSelect = (account, cupcake) => {
 		alert(JSON.stringify(cupcake));
+		//toda.apiGetRequest('/files' + cupcake.id + 'meta')
+		//.then(console.log);
+
 		console.log(account);
 
     this.setState({ 

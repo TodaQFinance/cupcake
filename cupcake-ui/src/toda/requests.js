@@ -69,6 +69,9 @@ function fileListSpec(ids) {
 function transactFileRequest (senderAccountId, receipientAccountId, fileIds) {
 	return {
 		"data": {
+			"attributes": {
+				"metadata" : { "meta": "information" }
+			},
 			"relationships": {
 				"sender": transactionPartySpec(senderAccountId),
 				"recipient": transactionPartySpec(receipientAccountId),
