@@ -8,7 +8,7 @@ import CupcakeEditor from './CupcakeEditor';
 
 const flavourColours = {"Chocolate": "#FF0000", "Vanilla": "#FFFFBB"};
 const icingColours = {"Chocolate": "#FF0000", "Vanilla": "#FFFFBB"};
-const sprinklesColours = {"Chocolate": "#FF0000", "Green": "#00FF00"};
+const sprinklesColours = {"Chocolate": "#FF0000", "Green": "#00FF00", "Rainbow": "#00FF00"};
 const candleColours = {"Blue":"#0000FF", "Red":"#FF0000"};
 
 class Bakery extends Component {
@@ -55,7 +55,7 @@ class Bakery extends Component {
           <Cupcake 
             flavourColour={flavourColours[flavour]}
             icingColour={icingColours[icing]}  
-            sprinklesColour={sprinklesColours[sprinkles.colour]}
+            sprinklesColour={sprinklesColours[sprinkles.type]}
             numSprinkles={sprinkles.quantity}
             candleColour={candleColours[candle.colour]}
             candleIgnited={candle.ignited} />

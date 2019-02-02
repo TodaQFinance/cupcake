@@ -7,8 +7,8 @@ var sampleAccount =
 		"contact": {
 			"email": "cupcake_maniac_99@hotmail.com",
 			"phone": "555-555-5323",
-			"last-name": "Rachmaninoff",
-			"first-name": "Sergei",
+			"last-name": "Scriabin",
+			"first-name": "Alexei",
 			"address": {
 				"city": "Toronto",
 				"country": "CA",
@@ -22,28 +22,17 @@ var sampleAccount =
 
 var sampleCupcake =
 	{ "flavour": "chocolate",
-		"icing": ["vanilla","strawberry"],
-		"sprinkles": [
-			{
-				"quantity": 42,
-				"type": "rainbow"
-			},
-			{
-				"quantity": 10,
-				"type": "chocolate"
-			}
-		],
-		"candles": [
+		"icing": "chocolate",
+		"sprinkles": 
+		{
+			"quantity": 41,
+			"type": "rainbow"
+		},
+		"candle": 
 			{ 
 				"colour":"blue",
 				"ignited":false
-			},
-			{
-				"colour":"pink",
-				"ignited":false
 			}
-		],
-		"temperature": 50 
 	}
 
 module.exports = {

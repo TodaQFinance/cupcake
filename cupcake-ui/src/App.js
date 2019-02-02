@@ -4,7 +4,6 @@ import './App.css';
 import Bakery from './Bakery';
 import CupcakeTransfer from './CupcakeTransfer';
 
-// Base Cupcake
 const cupcakeBase = {
   id: null,
   flavour: "Chocolate",
@@ -15,10 +14,9 @@ const cupcakeBase = {
   },
   candle: {
     colour: "Blue",
-    remaining: 20,
     ignited: true,
   },
-  temperature: 50,
+	address: '4e0ed006-4fe0-46e3-9a05-c928640a4e05'
 }
 
 class App extends Component {
@@ -27,12 +25,12 @@ class App extends Component {
     this.state = {
       cupcake: cupcakeBase,
       left: {
-        account: "bbc044fc-d9be-470d-9393-2005ed731b28",
-        cupcakes: [{...cupcakeBase, id: 1, flavour: "Vanilla"}, {...cupcakeBase, id: 2, icing: "Vanilla"}, {...cupcakeBase, id: 3}]
+        account: '4e0ed006-4fe0-46e3-9a05-c928640a4e05',
+        cupcakes: [] // no cupcakes to start
       },
       right: {
-        account: "789",
-        cupcakes: [{...cupcakeBase, id: 4, sprinkles: { colour: "Red", quantity: 40}}, {...cupcakeBase, id: 5}]
+        account: "18ebfbe7-1416-4a1a-bdcc-9728076b5b99",
+        cupcakes: []
       }
     };
   }
@@ -42,7 +40,7 @@ class App extends Component {
   }
 
   onTransfer = (fromAccount, toAccount, cupcake) => {
-    console.log("Transfer Cupcake", fromAccount, toAccount, cupcake);
+    //console.log("Transfer Cupcake", fromAccount, toAccount, cupcake);
   }
 
   onSelected = cupcake => {
@@ -57,11 +55,22 @@ class App extends Component {
     const {left, right, cupcake} = this.state;
 
     return (
-      <div className="container">
-        <h1>TodaQ Cupcakerator</h1>
+			<div className="container">
 
-        <CupcakeTransfer left={left} right={right} onTransfer={this.onTransfer} onCupcakeSelect={this.onSelected} />
-        <Bakery cupcake={cupcake} onBake={this.onBake} onChange={this.onSelected} />
+			<h1>Cupcakes.OT</h1>
+
+			<CupcakeTransfer 
+				left={left} 
+				right={right} 
+				onTransfer={this.onTransfer} 
+				onCupcakeSelect={this.onSelected}
+			/>
+
+			<Bakery 
+				cupcake={cupcake} 
+				onBake={this.onBake} 
+				onChange={this.onSelected}
+			/>
       </div>
     );
   }

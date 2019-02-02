@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import * as toda from './toda/api.js';
+import * as apiRequests from './toda/requests.js';
 
 function DropDown({label, items, value, onChange}) {
   if(!onChange) { onChange = e => {}; }
@@ -58,6 +60,15 @@ class CupcakeEditor extends Component {
 
   onBake = evt => {
     evt.preventDefault();
+		let request = apiRequests.createFileRequest(
+			1, 
+			'cupcake', 
+			this.props.cupcake.address,
+	    this.props.cupcake);
+
+		console.log('making cupcake..');
+		toda.apiPostRequest('/files', request)
+		.then(console.log);
 
     if(this.props.onBake) {
       this.props.onBake(this.props.cupcake);
@@ -66,7 +77,7 @@ class CupcakeEditor extends Component {
 
   render() {
     const {cupcake, flavourColours, icingColours, sprinklesColours, candleColours} = this.props;
-    const {flavour, icing, sprinkles, candle, temperature} = cupcake;
+    const {address, flavour, icing, sprinkles, candle, temperature} = cupcake;
 
     return (
       <form>
@@ -101,13 +112,12 @@ class CupcakeEditor extends Component {
             onChange={this.onChange((c, v) => c.candle.colour = v)} />
 
           <div className="form-group col-md-4">
-            <label>Remaining</label>
+            <label>Initial Address</label>
             <input
-              type="number" 
-              min={0} max={100} 
+              type="string" 
               className="form-control" 
-              value={candle.remaining} 
-              onChange={this.onChange((c, v) => c.candle.remaining = parseInt(v, 10))} />
+              value={address} 
+              onChange={this.onChange((c, v) => c.address = v )} />
           </div>
           <div className="form-group col-md-4">
             <div className="form-check">
@@ -118,18 +128,6 @@ class CupcakeEditor extends Component {
                 onChange={this.onChange((c, v) => c.candle.ignited = v)} />
               <label className="form-check-label">Ignited</label>
             </div>
-          </div>
-        </div>
-
-        {/* Temperature */}
-        <div className="form-row">
-          <div className="form-group col-md-4">
-            <label>Temperature</label>
-            <input 
-              type="number" 
-              className="form-control" 
-              value={temperature}
-              onChange={this.onChange((c, v) => c.temperature = parseInt(v, 10))} />
           </div>
         </div>
 

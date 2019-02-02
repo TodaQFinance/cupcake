@@ -4,6 +4,7 @@ import './CupcakeTransfer.css'
 import 'request-promise';
 
 import * as toda from './toda/api.js';
+import * as apiRequests from './toda/requests.js';
 
 class AccountSelector extends Component {
   constructor(props) {
@@ -15,7 +16,6 @@ class AccountSelector extends Component {
 
   onLoad = evt => {
     evt.preventDefault();
-
     if(this.props.onLoad) {
       this.props.onLoad(this.state.account);
     }
@@ -53,15 +53,19 @@ class AccountPanel extends Component {
         <AccountSelector account={account} onLoad={onLoad} />
         <div>
           {cupcakes.map(c => {
+						console.log(c);
             const className = classnames("cupcake-row", {
-              "cupcake-row-selected": c.id == (selected && selected.id),
+              //"cupcake-row-selected": c.id == (selected && selected.id),
             });
 
-            return (
-              <div className={className} key={c.id} onClick={evt => onSelect(c)}>
-                Cupcake - {c.id}
-              </div>
-            );
+						return (
+							<div 
+							className={className} 
+							key={c.id} 
+							onClick={evt => onSelect(c)}>
+							{c.id}
+							</div>
+						);
           })}
         </div>
       </div>
@@ -83,49 +87,67 @@ class CupcakeTransfer extends Component {
   }
 
   onLoad = (side, account) => {
-    // TODO: Load from server
-		
-		// XXX the account is hardcoded in here 
 		var that = this;
 		toda.apiGetRequest('/accounts/' + account + "/files")
+		  .catch(function(e) {
+				console.log(e);
+			})
 			.then(function(filesData) {
-				// filter out whatever isn't a cupcake
-				// XXX omg array result
-				//let cupcakes = filesData['data'].filter(x=>x['attributes']['file-type']=='cupcake')
+				if (filesData.meta['total-results'] > 0) {
+					//console.log(filesData.data)
 
-				console.log("On Load", side, account);
-				console.log(that.state);
-
-				if(side === "left") {
-					that.setState({
-						leftAccount: account, 
-						rightAccount: null,
-						left: { cupcakes: [filesData.data] }});
-				} else if(side === "right") {
-					this.setState({
-						rightAccount: account,
-						leftAccount: null,
-					  right: { cupcakes: [filesData.data] }});
+					if(side === "left") {
+						that.setState({
+							leftAccount: account, 
+							left: { cupcakes: [filesData.data], account: account }});
+					} 
+					else if(side === "right") {
+						console.log(filesData);
+						that.setState({
+							rightAccount: account,
+							right: { cupcakes: [filesData.data], account: account }});
+						console.log(that.state);
+					}
 				}
-				console.log(that.state.left)g
-			});
-  }
+			}
+			);
+	}
 
-  onCupcakeSelect = (account, cupcake) => {
-		console.log(cupcake);
+	onCupcakeSelect = (account, cupcake) => {
+		alert(JSON.stringify(cupcake));
+		console.log(account);
+
     this.setState({ 
       selectedAccount: account,
-      selectedCupcake: cupcake['attributes']['payload'],
+      selectedCupcake: cupcake,
     });
 
-    if(this.props.onCupcakeSelect) { this.props.onCupcakeSelect(cupcake); }
+		console.log(this.state);
+
+    //if(this.props.onCupcakeSelect) { this.props.onCupcakeSelect(cupcake); }
   }
 
-  onTransfer = (fromAccount, toAccount, cupcake) => {
-		console.log(fromAccount, toAccount, cupcake);
-    if(this.props.onTransfer) {
-      this.props.onTransfer(fromAccount, toAccount, cupcake);
-    }
+  onTransfer = (fromAccount, toAccount, cupcake) => { 
+		console.log('tx')
+		console.log(fromAccount, toAccount, cupcake)
+		if (fromAccount && toAccount && cupcake) {
+			// api
+			let id = cupcake.id;
+			let request = apiRequests.transactFileRequest(fromAccount,toAccount,[id]);
+			console.log('=====');
+			console.log(request);
+			toda.apiPostRequest('/transactions', request)
+				.catch(function(e) {
+					console.log(e);
+				})
+				.then(function(res) {
+					console.log(res);
+				});
+
+			// base
+			if(this.props.onTransfer) {
+				this.props.onTransfer(fromAccount, toAccount, cupcake);
+			}}
   }
 
   render() {
@@ -145,12 +167,12 @@ class CupcakeTransfer extends Component {
             onSelect={this.onCupcakeSelect.bind(this, left.account)} />
         </div>
         <div className="col-md-2">
-          {selectedAccount && selectedCupcake ? (
+          
             <button type="button" className="btn btn-secondary mb-2"
-              onClick={this.onTransfer.bind(this, leftAccount, rightAccount, selectedCupcake)}>
+              onClick={this.onTransfer.bind(this, fromAccount, toAccount, selectedCupcake)}>
               {!leftToRight ? "<-" : null} Transfer {leftToRight ? "->" : null}
             </button>
-          ) : null}
+          
         </div>
         <div className="col-md-5">
           <AccountPanel 

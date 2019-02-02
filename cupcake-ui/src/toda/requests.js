@@ -71,18 +71,17 @@ function transactFileRequest (senderAccountId, receipientAccountId, fileIds) {
 		"data": {
 			"relationships": {
 				"sender": transactionPartySpec(senderAccountId),
-				"recipient": transactionPartySpec(receipientAccountId)
+				"recipient": transactionPartySpec(receipientAccountId),
+				"files": {
+					"data": fileListSpec(fileIds)
+				}
 			},
-			"files": {
-				"data": fileListSpec(fileIds)
-			}
 		}
 	}
 }
 
 module.exports = {
 	createIndividualAccountRequest,
-	transactFileRequest
+	transactFileRequest,
+	createFileRequest
 }
-
-
