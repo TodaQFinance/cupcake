@@ -1,16 +1,14 @@
 // API interfacing for our cupcake application
+var apiURL = "https://api.todaqfinance.net";
+var apiKey = 'd5780899-dbb8-4c71-a12b-9de54ea0227d';
 
 // Node modules
-request = require('request-promise');
+var request = require('request-promise');
 
 // Cupcakes.OT custom data
-sampleData = require('./data.js');
-apiRequests = require('./requests.js');
-cupcakeProps = require('./cupcake_properties.js');
-
-// API data
-apiURL = "https://api.todaqfinance.net";
-apiKey = 'd5780899-dbb8-4c71-a12b-9de54ea0227d';
+var sampleData = require('./data.js');
+var apiRequests = require('./requests.js');
+var cupcakeProps = require('./cupcake_properties.js');
 
 /* implement:
 create-cupcake
@@ -34,36 +32,37 @@ function apiRequest (method, endpoint, body) {
 		}, 
 		function (error, response, body) {
 			// For now, simply prints out the response of making this GET request.
-			console.log('Done!');
 			if (!error) {
-				console.log(response.headers);
-				console.log(response.body);
-				console.log(response.statusCode); }
-		})
+				console.log('Done!');
+				//console.log(response.headers);
+				//console.log(response.body);
+				//console.log(response.statusCode); 
+			} })
 }
 
 function apiGetRequest(endpoint) {
-	apiRequest('GET', endpoint);
+	return apiRequest('GET', endpoint);
 }
 
 function apiPostRequest(endpoint, body) {
-	apiRequest('POST', endpoint, body);
+	return apiRequest('POST', endpoint, body);
 }
 
 // Create an account!
-newAccountRequest = apiRequests.createIndividualAccountRequest(sampleData.sampleAccount);
+var newAccountRequest = apiRequests.createIndividualAccountRequest(sampleData.sampleAccount);
 //apiPostRequest('/accounts', newAccountRequest);
 
 // Verify it exists now
 //apiGetRequest('/accounts');
 
 // Our account-id as specified by the response is: 
-ourAccountId = 'bbc044fc-d9be-470d-9393-2005ed731b28'; 
+var ourAccountId = 'bbc044fc-d9be-470d-9393-2005ed731b28'; 
 // Let's check out our files
 //apiGetRequest('/files');
 
 // Hmm.. we don't have any. Let's fix that:
 
+/*
 ourFirstCupcake = sampleData.sampleCupcake // we're pretty uninspired for now
 fileCreationRequest = 
 	apiRequests.createFileRequest(
@@ -71,6 +70,7 @@ fileCreationRequest =
 		'cupcake', // let's specify this is a cupcake file
 		ourAccountId, // we definitely want to specify this is OURS to begin with
 		ourFirstCupcake); // use our specified cupcake parameters
+		*/
 
 //console.log(fileCreationRequest.data["relationships"]["initial-account"]);
 
@@ -80,4 +80,5 @@ fileCreationRequest =
 //apiGetRequest('/files');
 //apiGetRequest('/accounts/' + ourAccountId);
 
+module.exports = { apiGetRequest, apiPostRequest };
 

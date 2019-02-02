@@ -1,6 +1,6 @@
 // Cupcake sample data
 
-sampleAccount = 
+var sampleAccount = 
 	{
 		"account-type": "individual",
 		"admin-email": "cupcake_maniac_99@hotmail.com",
@@ -20,7 +20,7 @@ sampleAccount =
 		}
 	}
 
-sampleCupcake =
+var sampleCupcake =
 	{ "flavour": "chocolate",
 		"icing": ["vanilla","strawberry"],
 		"sprinkles": [

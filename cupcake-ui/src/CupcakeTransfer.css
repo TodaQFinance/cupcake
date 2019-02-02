@@ -1,0 +1,8 @@
+.cupcake-row {
+    padding: 10px;
+}
+
+.cupcake-row:hover, .cupcake-row-selected {
+    background-color: lightgrey;
+    cursor: pointer;
+}

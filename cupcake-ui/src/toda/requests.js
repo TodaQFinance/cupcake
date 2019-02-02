@@ -6,7 +6,6 @@
 // ---- Account creation ---- 
 
 function createIndividualAccountRequest(params) {
-	// FIXME
 	return {
 		"type": "account",
 			"data": {
@@ -81,8 +80,9 @@ function transactFileRequest (senderAccountId, receipientAccountId, fileIds) {
 	}
 }
 
-module.exports = { 
+module.exports = {
 	createIndividualAccountRequest,
-	createFileRequest
+	transactFileRequest
 }
+
 
