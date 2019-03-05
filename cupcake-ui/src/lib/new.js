@@ -15,7 +15,7 @@ fileId1 = '6fa827f260c8851b0d00cfc8e0898a025756b902a709bbdaaf1d8f489edc5df3';
 // basic API interaction
 function apiRequest(method, endpoint, params) {
   return fetch(apiURL + endpoint, {
-    method: method,
+    method,
     mode: 'cors',
     headers: {
       'Content-Type': 'application/json',
@@ -56,10 +56,6 @@ function apiPost(endpoint, params) {
 
 // const transactionId = '5a7e6c96-2c12-4187-bc6f-1d4d8da42081';
 
-const newTransactionRequest = apiRequests.transactFileRequest(acct0, acct1, [
-  fileId0,
-]);
+const newTransactionRequest = apiRequests.transactFileRequest(acct0, acct1, [fileId0]);
 
-const newAccountFileRequest = apiRequests
-  .apiGet('/accounts')
-  .then(x => console.log(x));
+const newAccountFileRequest = apiRequests.apiGet('/accounts').then(x => console.log(x));

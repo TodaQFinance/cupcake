@@ -1,64 +1,68 @@
 import React, { Component } from 'react';
-import './App.css';
+import '../styles/App.css';
 
-import * as toda from './toda/api.js';
+import * as toda from '../lib/api';
 
 import Cupcake from './Cupcake';
 import CupcakeEditor from './CupcakeEditor';
 
-const flavourColours = {"Chocolate": "#FF0000", "Vanilla": "#FFFFBB"};
-const icingColours = {"Chocolate": "#FF0000", "Vanilla": "#FFFFBB"};
-const sprinklesColours = {"Chocolate": "#FF0000", "Green": "#00FF00", "Rainbow": "#00FF00"};
-const candleColours = {"Blue":"#0000FF", "Red":"#FF0000"};
+const flavourColours = { Chocolate: '#FF0000', Vanilla: '#FFFFBB' };
+const icingColours = { Chocolate: '#FF0000', Vanilla: '#FFFFBB' };
+const sprinklesColours = { Chocolate: '#FF0000', Green: '#00FF00', Rainbow: '#00FF00' };
+const candleColours = { Blue: '#0000FF', Red: '#FF0000' };
 
 class Bakery extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  onBake = cupcake => {
-    if(this.props.onBake) {
-        this.props.onBake(cupcake);
+  onBake = (cupcake) => {
+    const { onBake } = this.props;
+    if (onBake) {
+      onBake(cupcake);
     }
-  }
+  };
 
-  onChange = cupcake => {
-    if(this.props.onChange) {
-      this.props.onChange(cupcake);
+  onChange = (cupcake) => {
+    const { onChange } = this.props;
+    if (onChange) {
+      onChange(cupcake);
     }
-  }
+  };
 
   render() {
-    const {cupcake} = this.props;
-    
-    if (!cupcake) {return null;}
+    const { cupcake } = this.props;
 
-    const {flavour, icing, sprinkles, candle, temperature} = cupcake;
-    
+    if (!cupcake) {
+      return null;
+    }
+
+    const {
+      flavour, icing, sprinkles, candle, temperature,
+    } = cupcake;
+
     return (
       <div className="row panel">
         <div className="col-md-8">
-          <CupcakeEditor 
+          <CupcakeEditor
             flavourColours={flavourColours}
             icingColours={icingColours}
             sprinklesColours={sprinklesColours}
             candleColours={candleColours}
             onChange={this.onChange}
             onBake={this.onBake}
-            cupcake={cupcake} />
-          </div>
+            cupcake={cupcake}
+          />
+        </div>
         <div className="col-md-4">
           {/*
             Due to ID's being used in the SVG you can only include one cupcake at a time or they will overwrite eachothers
             styles.
             */}
-          <Cupcake 
+          <Cupcake
             flavourColour={flavourColours[flavour]}
-            icingColour={icingColours[icing]}  
+            icingColour={icingColours[icing]}
             sprinklesColour={sprinklesColours[sprinkles.type]}
             numSprinkles={sprinkles.quantity}
             candleColour={candleColours[candle.colour]}
-            candleIgnited={candle.ignited} />
+            candleIgnited={candle.ignited}
+          />
         </div>
       </div>
     );
