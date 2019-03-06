@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import * as toda from '../lib/api';
-import * as apiRequests from '../lib/requests';
+
+import createFile from '../lib/helpers/files/createFile';
 
 function DropDown({
   label, items, value, onChange,
@@ -64,10 +64,10 @@ class CupcakeEditor extends Component {
   onBake = (evt) => {
     const { cupcake, onBake } = this.props;
     evt.preventDefault();
-    const request = apiRequests.createFileRequest(1, 'cupcake', cupcake.address, cupcake);
 
     console.log('making cupcake..');
-    toda.apiPostRequest('/files', request).then(console.log);
+
+    createFile(cupcake).then(data => console.log(data));
 
     if (onBake) {
       onBake(cupcake);

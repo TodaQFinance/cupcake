@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import '../shared/styles/CupcakeTransfer.css';
 import 'request-promise';
 
-import * as toda from '../lib/api';
-import * as apiRequests from '../lib/requests';
-
 import AccountPanel from './AccountPanel';
 
 class CupcakeTransfer extends Component {
