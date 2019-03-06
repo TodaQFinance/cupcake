@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './shared/styles/App.css';
 
-import { cupcakeBase } from './shared/constants';
+import { cupcakeBase } from './shared/constants/constants';
 
 import Bakery from './components/Bakery';
 import CupcakeTransfer from './components/CupcakeTransfer';

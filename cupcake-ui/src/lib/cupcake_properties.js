@@ -1,5 +1,4 @@
 // Cupcake descriptors and constructor
-
 /*
  * Returns the specification for a candle.
  * colour : a string describing the colour of the cupcake

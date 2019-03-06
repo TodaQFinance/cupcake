@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-import '../shared/styles/App.css';
 
-import * as toda from '../lib/api';
+import '../shared/styles/App.css';
 
 import Cupcake from './Cupcake';
 import CupcakeEditor from './CupcakeEditor';
 
 import {
-  flavourColours, icingColours, sprinklesColours, candleColours,
-} from '../shared/constants';
+  flavourColours,
+  icingColours,
+  sprinklesColours,
+  candleColours,
+} from '../shared/constants/constants';
 
 class Bakery extends Component {
   onBake = (cupcake) => {

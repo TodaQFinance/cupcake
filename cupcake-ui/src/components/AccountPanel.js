@@ -1,6 +1,7 @@
-import React from 'react';
-import '../shared/styles/CupcakeTransfer.css';
 import classnames from 'classnames';
+import React from 'react';
+
+import '../shared/styles/CupcakeTransfer.css';
 
 import AccountSelector from './AccountSelector';
 

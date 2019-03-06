@@ -1,51 +1,12 @@
-const fetch = require('node-fetch');
-const apiRequests = require('./requests');
-const sampleData = require('./data');
-const sampleCupcake = require('./data');
+// const { sampleAccount } = require('./data');
+// const createIndividualAccount = require('./helpers/accounts/createIndividualAccount');
+// const getAccounts = require('./helpers/accounts/getAccounts');
+// const getAccountById = require('./helpers/accounts/getAccountById');
 
-// basic API interaction
-function apiRequest(method, endpoint, params) {
-  return fetch(process.env.API_URL + endpoint, {
-    method,
-    mode: 'cors',
-    headers: {
-      'Content-Type': 'application/json',
-      'x-api-key': process.env.API_KEY,
-    },
-    json: true,
-    body: JSON.stringify(params),
-  }).then(x => x.json());
-}
+require('dotenv').config();
 
-function apiGet(endpoint) {
-  return apiRequest('GET', endpoint);
-}
+// getAccounts().then(data => console.log(data));
 
-function apiPost(endpoint, params) {
-  return apiRequest('POST', endpoint, params);
-}
+// getAccountById(id).then(data => console.log(data));
 
-// // do something with accounts
-// apiGet('/accounts').then((x) => {
-//   console.log(x);
-// });
-
-// const newAccountRequest = apiRequests.createIndividualAccountRequest(sampleData.sampleAccount);
-
-// const res = apiPost('/accounts', newAccountRequest).then(x => console.log(x));
-
-const newFilesRequest = apiRequests.createFileRequest(
-  1,
-  'cupcake',
-  process.env.ACCOUNT_0,
-  sampleCupcake,
-);
-apiPost('/files', newFilesRequest).then(x => console.log(x));
-
-// const newTransactionRequest = apiRequests.transactFileRequest(
-//   process.env.ACCOUNT_0,
-//   process.env.ACCOUNT_1,
-//   [process.env.FILE_ID_0],
-// );
-
-// const newAccountFileRequest = apiRequests.apiGet('/accounts').then(x => console.log(x));
+// createIndividualAccount(sampleAccount).then(data => console.log(data));

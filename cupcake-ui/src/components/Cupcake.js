@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactSVG from 'react-svg';
+
 import '../shared/styles/Cupcake.css';
 import cupcakeSvg from '../shared/svg/cupcake.svg';
 
