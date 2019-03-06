@@ -1,23 +1,10 @@
 import React, { Component } from 'react';
-import './styles/App.css';
+import './shared/styles/App.css';
+
+import { cupcakeBase } from './shared/constants';
 
 import Bakery from './components/Bakery';
 import CupcakeTransfer from './components/CupcakeTransfer';
-
-const cupcakeBase = {
-  id: null,
-  flavour: 'Chocolate',
-  icing: 'Chocolate',
-  sprinkles: {
-    colour: 'Chocolate',
-    quantity: 20,
-  },
-  candle: {
-    colour: 'Blue',
-    ignited: true,
-  },
-  address: '4e0ed006-4fe0-46e3-9a05-c928640a4e05',
-};
 
 class App extends Component {
   constructor(props) {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactSVG from 'react-svg';
-import '../styles/Cupcake.css';
-import cupcakeSvg from '../svg/cupcake.svg';
+import '../shared/styles/Cupcake.css';
+import cupcakeSvg from '../shared/svg/cupcake.svg';
 
 function setCss(element, selector, style, value) {
   element.querySelectorAll(selector).forEach((e) => {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../styles/CupcakeTransfer.css';
+import '../shared/styles/CupcakeTransfer.css';
 import 'request-promise';
 
 import * as toda from '../lib/api';
