@@ -19,7 +19,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "new": "babel-node src/lib/new.js"
+    "new": "node src/lib/new.js"
   },
   "eslintConfig": {
     "extends": "react-app"

@@ -1,5 +1,5 @@
-// const { sampleAccount } = require('./data');
-// const createIndividualAccount = require('./helpers/accounts/createIndividualAccount');
+const { sampleAccount } = require('./data');
+const createIndividualAccount = require('./helpers/accounts/createIndividualAccount');
 // const getAccounts = require('./helpers/accounts/getAccounts');
 // const getAccountById = require('./helpers/accounts/getAccountById');
 
@@ -9,4 +9,4 @@ require('dotenv').config();
 
 // getAccountById(id).then(data => console.log(data));
 
-// createIndividualAccount(sampleAccount).then(data => console.log(data));
+createIndividualAccount(sampleAccount).then(data => console.log(data));
