@@ -7,20 +7,17 @@ import Bakery from './components/Bakery';
 import CupcakeTransfer from './components/CupcakeTransfer';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      cupcake: cupcakeBase,
-      left: {
-        account: '', // FIXME
-        cupcakes: [],
-      },
-      right: {
-        account: '', // FIXME
-        cupcakes: [],
-      },
-    };
-  }
+  state = {
+    cupcake: cupcakeBase,
+    left: {
+      account: '', // FIXME
+      cupcakes: [],
+    },
+    right: {
+      account: '', // FIXME
+      cupcakes: [],
+    },
+  };
 
   onBake = (cupcake) => {
     console.log('Baking Cupcake', cupcake);
