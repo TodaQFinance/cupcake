@@ -13,6 +13,8 @@ Then, copy some things.
 `cd cupcake-ui`  
 `cp .env.example .env`
 
+Put your API key in your shiny new `.env` file.
+
 Use npm to install all the things.
 
 `npm i`
