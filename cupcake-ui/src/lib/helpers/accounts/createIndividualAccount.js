@@ -7,7 +7,7 @@ const createIndividualAccount = data => axios
       'x-api-key': process.env.API_KEY,
     },
   })
-  .then(res => res)
+  .then(res => res.data.data)
   .catch(error => console.log(error));
 
 module.exports = createIndividualAccount;

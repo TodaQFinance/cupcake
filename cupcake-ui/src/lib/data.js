@@ -3,9 +3,9 @@ const sampleAccount = {
   data: {
     attributes: {
       'account-type': 'individual',
-      'admin-email': 'peter.wiggen@hegemon.org',
+      'admin-email': 'peter.wiggen@example.com',
       contact: {
-        email: 'peter.wiggen@hegemon.org',
+        email: 'peter.wiggen@example.com',
         phone: '555-555-5323',
         'last-name': 'Wiggen',
         'first-name': 'Peter',
