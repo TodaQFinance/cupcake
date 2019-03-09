@@ -2,6 +2,8 @@
 
 ## Install instructions
 
+Note: you'll need npm and node to run this demo. You can install them from here: https://nodejs.org/en/
+
 First, clone the repo.
 
 `git clone git@github.com:PrivacyShell/cupcake.git .`
@@ -15,5 +17,9 @@ Use npm to install all the things.
 
 `npm i`
 
-If you don't have node and npm you can find them at https://nodejs.org/en/
+Now you can run a thing.
+
+`npm run new`
+
+See the id there? Copy it into a file.
 
