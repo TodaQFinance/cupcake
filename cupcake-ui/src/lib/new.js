@@ -1,7 +1,8 @@
-const { sampleAccount } = require('./data');
+const { sampleAccount, sampleCupcake } = require('./data');
 const createIndividualAccount = require('./helpers/accounts/createIndividualAccount');
 // const getFilesByAccount = require('./helpers/accounts/getFilesByAccount');
 // const getAccountById = require('./helpers/accounts/getAccountById');
+// const createFile = require('./helpers/files/createFile');
 
 require('dotenv').config();
 
@@ -11,4 +12,5 @@ require('dotenv').config();
 
 createIndividualAccount(sampleAccount).then(data => console.log(data));
 // getFilesByAccount(process.env.ACCOUNT_0).then(data => console.log(data));
-// getAccountById(id).then(data => console.log(data));
+// getAccountById(process.env.ACCOUNT_0).then(data => console.log(data));
+// createFile(sampleCupcake, process.env.ACCOUNT_0, "0").then(data => console.log(data));
