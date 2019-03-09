@@ -4,10 +4,11 @@
 
 First, clone the repo.
 
-`git clone git@github.com:PrivacyShell/cupcake.git`
+`git clone git@github.com:PrivacyShell/cupcake.git .`
 
 Then, copy some things.
 
+`cd cupcake-ui`  
 `cp .env.example .env`
 
 Use npm to install all the things.
