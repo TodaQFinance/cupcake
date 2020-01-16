@@ -4,13 +4,13 @@
   "private": true,
   "dependencies": {
     "@iconfu/svg-inject": "^1.2.2",
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "bootstrap": "^4.2.1",
     "classnames": "^2.2.6",
     "dotenv": "^6.2.0",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
-    "react-scripts": "^2.1.5",
+    "react-scripts": "^3.3.0",
     "react-svg": "^7.2.6",
     "request-promise": "^4.2.2"
   },
