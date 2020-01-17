@@ -7,17 +7,31 @@ import Bakery from './components/Bakery';
 import CupcakeTransfer from './components/CupcakeTransfer';
 
 class App extends Component {
-  state = {
-    cupcake: cupcakeBase,
-    left: {
-      account: '', // FIXME
-      cupcakes: [],
-    },
-    right: {
-      account: '', // FIXME
-      cupcakes: [],
-    },
-  };
+  constructor(props) {
+    super(props)
+    this.state = {
+      cupcake: cupcakeBase,
+      left: {
+        account: 'fixme', // FIXME
+        cupcakes: [{
+          ...cupcakeBase,
+          id: 1,
+          flavour: "Vanilla"
+        }, {
+          ...cupcakeBase,
+          id: 2,
+          icing: "Chocolate"
+        }, {
+          ...cupcakeBase,
+          id: 3
+        }],
+      },
+      right: {
+        account: '', // FIXME
+        cupcakes: [],
+      },
+    };
+  }
 
   onBake = (cupcake) => {
     console.log('Baking Cupcake', cupcake);

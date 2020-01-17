@@ -5,26 +5,29 @@ import 'request-promise';
 import AccountPanel from './AccountPanel';
 
 class CupcakeTransfer extends Component {
-  state = {
-    leftAccount: this.props.left && this.props.left.account,
-    rightAccount: this.props.right && this.props.right.account,
-    selectedAccount: -1,
-    selectedCupcake: null,
-    left: this.props.left,
-    right: this.props.right,
-  };
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      leftAccount: this.props.left && this.props.left.account,
+      rightAccount: this.props.right && this.props.right.account,
+      selectedAccount: -1,
+      selectedCupcake: null,
+      left: this.props.left,
+      right: this.props.right,
+    };
+  }
   onLoad = (side, account) => {
     const that = this;
     // FIXME
   };
 
   onCupcakeSelect = (account, cupcake) => {
-    alert(JSON.stringify(cupcake));
+    // alert(JSON.stringify(cupcake));
 
     this.setState({
       selectedAccount: account,
       selectedCupcake: cupcake,
+      // cupcake: cupcake
     });
 
     // if(this.props.onCupcakeSelect) { this.props.onCupcakeSelect(cupcake); }
