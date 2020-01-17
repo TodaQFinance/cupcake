@@ -26,11 +26,10 @@ class CupcakeTransfer extends Component {
 
     this.setState({
       selectedAccount: account,
-      selectedCupcake: cupcake,
-      // cupcake: cupcake
+      selectedCupcake: cupcake
     });
 
-    // if(this.props.onCupcakeSelect) { this.props.onCupcakeSelect(cupcake); }
+    if(this.props.onCupcakeSelect) { this.props.onCupcakeSelect(cupcake); }
   };
 
   onTransfer = (fromAccount, toAccount, cupcake) => {

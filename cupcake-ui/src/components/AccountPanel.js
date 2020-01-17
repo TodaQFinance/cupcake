@@ -23,8 +23,8 @@ class AccountPanel extends Component {
             });
     
             return (
-              <div className={className} key={c.id} onClick={evt => onSelect(c)}>
-                {c.id}
+              <div className={className} key={c.id} onClick={evt => {console.log("is this called?"); onSelect(c)}}>
+                Cupcake - {c.id}
               </div>
             );
           })}
