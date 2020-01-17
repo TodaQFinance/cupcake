@@ -67,7 +67,7 @@ class CupcakeEditor extends Component {
 
     console.log('making cupcake..');
 
-    createFile(cupcake).then(data => console.log(data));
+    createFile(cupcake, cupcake.address).then(data => console.log(data));
 
     if (onBake) {
       onBake(cupcake);
