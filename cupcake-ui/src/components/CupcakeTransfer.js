@@ -3,6 +3,7 @@ import '../shared/styles/CupcakeTransfer.css';
 import 'request-promise';
 
 import AccountPanel from './AccountPanel';
+import initiateTransaction from '../lib/helpers/transactions/initiateTransaction';
 
 import getFilesByAccount from '../lib/helpers/accounts/getFilesByAccount'
 import { objectExpression } from '@babel/types';
@@ -23,7 +24,7 @@ class CupcakeTransfer extends Component {
     //console.log(this.state.left.cupcakes);
     getFilesByAccount(account).then(data => {
       //console.log(data);
-      const cupcakes_from_server = data.map(x => {return {... x.attributes.payload, id:x.id.substring(0,4)}});
+    const cupcakes_from_server = data.map(x => {return {... x.attributes.payload, id:x.id /*.substring(0,4)*/  }});
       this.setState(state => (state.left.cupcakes = cupcakes_from_server, state));
       //console.log(cupcakes_from_server)
     });
@@ -37,20 +38,49 @@ class CupcakeTransfer extends Component {
       selectedCupcake: cupcake
     });
 
-    if(this.props.onCupcakeSelect) { this.props.onCupcakeSelect(cupcake); }
+    if (this.props.onCupcakeSelect) { this.props.onCupcakeSelect(cupcake); }
   };
 
   onTransfer = (fromAccount, toAccount, cupcake) => {
-    const { id } = cupcake;
+
+    // const { id } = cupcake;
     const { onTransfer } = this.props;
     console.log('tx');
     console.log(fromAccount, toAccount, cupcake);
     if (fromAccount && toAccount && cupcake) {
-      // FIXME
-      // base
-      if (onTransfer) {
-        onTransfer(fromAccount, toAccount, cupcake);
-      }
+      initiateTransaction({
+        data: {
+          attributes: {
+            metadata: {}
+          },
+          relationships: {
+            sender: {
+              type: 'account',
+              id: fromAccount
+            },
+            recipient: {
+              type: 'account',
+              id: toAccount
+            },
+            files: {
+              data: [{
+                type: 'file',
+                id: cupcake.id
+              }]
+            }
+          }
+        }
+      })
+      .then(res => {
+        if (res) {
+          console.log(`transfered cupcake ${cupcake.id} from account ${fromAccount} to account ${toAccount}`)
+        }
+      })
+      .finally(() => {
+        if (onTransfer) {
+          onTransfer(fromAccount, toAccount, cupcake);
+        }
+      });
     }
   };
 
