@@ -10,11 +10,11 @@ class App extends Component {
   state = {
     cupcake: cupcakeBase,
     left: {
-      account: '', // FIXME
+      account: 'e912536a-133d-43cd-b0d3-3a7e12cf44d5', // FIXME
       cupcakes: [],
     },
     right: {
-      account: '', // FIXME
+      account: 'e912536a-133d-43cd-b0d3-3a7e12cf44d5', // FIXME
       cupcakes: [],
     },
   };

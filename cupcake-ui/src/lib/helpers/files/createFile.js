@@ -1,4 +1,5 @@
 const axios = require('axios');
+const reqs = require('../../../reqs');
 
 const requestBody = {
     data: {
@@ -25,15 +26,14 @@ const requestBody = {
 const createFile = (payload, owner, fileType) => {
     let body = requestBody;
     body['data']['attributes']['payload'] = payload;
-    body['data']['relationships']['initial-account']['data']['id'] = owner;
+    body['data']['relationships']['initial-account']['data']['id'] = "b5e2d34c-8bd9-469b-afbe-a924dcffe637";
     body['data']['relationships']['file-type']['data']['id'] = fileType;
 
-    return axios.post(`${process.env.API_URL}/files`, body, {
-        headers: {
-            'Content-Type': 'application/json',
-            'x-api-key': process.env.API_KEY,
-        }
-    })
+    console.log(process.env);
+    const instance = axios.create({
+        baseURL: ''
+      });
+    return reqs.post(`/files`, body)
     .then(res => res.data.data)
     .catch(error => console.log(error))};
 
