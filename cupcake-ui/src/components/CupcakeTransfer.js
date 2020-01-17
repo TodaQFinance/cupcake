@@ -4,6 +4,9 @@ import 'request-promise';
 
 import AccountPanel from './AccountPanel';
 
+import getFilesByAccount from '../lib/helpers/accounts/getFilesByAccount'
+import { objectExpression } from '@babel/types';
+
 class CupcakeTransfer extends Component {
   constructor(props) {
     super(props);
@@ -17,8 +20,13 @@ class CupcakeTransfer extends Component {
     };
   }
   onLoad = (side, account) => {
-    const that = this;
-    // FIXME
+    //console.log(this.state.left.cupcakes);
+    getFilesByAccount(account).then(data => {
+      //console.log(data);
+      const cupcakes_from_server = data.map(x => {return {... x.attributes.payload, id:x.id.substring(0,4)}});
+      this.setState(state => (state.left.cupcakes = cupcakes_from_server, state));
+      //console.log(cupcakes_from_server)
+    });
   };
 
   onCupcakeSelect = (account, cupcake) => {
