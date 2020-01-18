@@ -4,7 +4,7 @@ const createIndividualAccount = require('./helpers/accounts/createIndividualAcco
 // const getAccountById = require('./helpers/accounts/getAccountById');
 // const createFile = require('./helpers/files/createFile');
 
-require('dotenv').config();
+// require('dotenv').config();
 
 // Simple, repeatable pattern for hitting up the TaaS API
 // Code can be run with ```npm run new```

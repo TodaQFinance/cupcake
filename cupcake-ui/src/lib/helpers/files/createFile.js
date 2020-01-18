@@ -24,14 +24,14 @@ const requestBody = {
 
 const createFile = (payload, initialAccount, fileType) => {
     
-    let body = requestBody;
     // (1/2) Update the relevant fields of body with the arguments above
+    let body = requestBody;
     body['data']['attributes']['payload'] = payload;
     body['data']['relationships']['initial-account']['data']['id'] = initialAccount;
     body['data']['relationships']['file-type']['data']['id'] = fileType;
-
+    
     // (2/2) Replace FIXME below with the appropriate API path
-    let path = `/files`;
+    let path = '/files';
 
     return axios.post(path, body, {})
         .then(res => res.data.data)
