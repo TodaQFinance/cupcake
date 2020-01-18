@@ -10,7 +10,7 @@ export const cupcakeBase = {
     colour: 'Blue',
     ignited: true,
   },
-  address: '1c8aee25-3716-4d88-ada5-d28a6dc90c41',
+  address: '1234',
 };
 
 export const flavourColours = { Chocolate: '#FF0000', Vanilla: '#FFFFBB' };

@@ -30,7 +30,7 @@ const createFile = (payload, initialAccount, fileType) => {
     body['data']['relationships']['initial-account']['data']['id'] = initialAccount;
     body['data']['relationships']['file-type']['data']['id'] = fileType;
 
-    // (2/2) Replace FIX-ME below with the appropriate API path
+    // (2/2) Replace FIXME below with the appropriate API path
     let path = `/files`;
 
     return axios.post(path, body, {})
