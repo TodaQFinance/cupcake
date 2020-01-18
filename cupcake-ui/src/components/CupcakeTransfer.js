@@ -25,7 +25,7 @@ class CupcakeTransfer extends Component {
     getFilesByAccount(account).then(data => {
       //console.log(data);
     const cupcakes_from_server = data.map(x => {return {... x.attributes.payload, id:x.id /*.substring(0,4)*/  }});
-      this.setState(state => (state.left.cupcakes = cupcakes_from_server, state));
+      this.setState(state => (state[side].cupcakes = cupcakes_from_server, state));
       //console.log(cupcakes_from_server)
     });
   };
@@ -55,12 +55,16 @@ class CupcakeTransfer extends Component {
           },
           relationships: {
             sender: {
-              type: 'account',
-              id: fromAccount
+              data: {
+                type: 'account',
+                id: fromAccount
+              }
             },
             recipient: {
-              type: 'account',
-              id: toAccount
+              data: {
+                type: 'account',
+                id: toAccount
+              }
             },
             files: {
               data: [{
