@@ -48,43 +48,17 @@ class CupcakeTransfer extends Component {
     console.log('tx');
     console.log(fromAccount, toAccount, cupcake);
     if (fromAccount && toAccount && cupcake) {
-      initiateTransaction({
-        data: {
-          attributes: {
-            metadata: {}
-          },
-          relationships: {
-            sender: {
-              data: {
-                type: 'account',
-                id: fromAccount
-              }
-            },
-            recipient: {
-              data: {
-                type: 'account',
-                id: toAccount
-              }
-            },
-            files: {
-              data: [{
-                type: 'file',
-                id: cupcake.id
-              }]
-            }
+      initiateTransaction(fromAccount, toAccount, cupcake.id)
+        .then(res => {
+          if (res) {
+            console.log(`transfered cupcake ${cupcake.id} from account ${fromAccount} to account ${toAccount}`)
           }
-        }
-      })
-      .then(res => {
-        if (res) {
-          console.log(`transfered cupcake ${cupcake.id} from account ${fromAccount} to account ${toAccount}`)
-        }
-      })
-      .finally(() => {
-        if (onTransfer) {
-          onTransfer(fromAccount, toAccount, cupcake);
-        }
-      });
+        })
+        .finally(() => {
+          if (onTransfer) {
+            onTransfer(fromAccount, toAccount, cupcake);
+          }
+        });
     }
   };
 
