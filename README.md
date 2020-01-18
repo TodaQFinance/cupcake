@@ -2,29 +2,40 @@
 
 ## Install instructions
 
-Note: you'll need npm and node to run this demo. You can install them from here: https://nodejs.org/en/
+You will need 
+- node js 8 installed on your system: https://nodejs.org/en/
+- git
 
-First, clone the repo.
+Clone this repo.
 
-`git clone git@github.com:PrivacyShell/cupcake.git cupcake`
+```
+git clone git@github.com:TodaQFinance/cupcake.git cupcake
+```
+
+Cd into `cupcake/cupcake-ui`
 
 Install dependencies.
 
-`npm install`
+```
+npm install
+```
 
-Get an api key.
-
-`https://engineering.todaq.net/api.html`
+Get an api key on: https://engineering.todaq.net/api.html
 
 Update `apiKey` in config file.
 
-`cupcake-ui/src/config.js`
+```
+cupcake-ui/src/config.js
+```
 
 Create a user by running:
 
-`npm run new`
+```
+npm run new
+```
 
 You should see output similar to this:
+
 ```js
 [ { type: 'account',
     id: 'f0ca4d9a-44b2-4f06-afd5-bdb99094bf37',
@@ -42,14 +53,20 @@ You should see output similar to this:
     meta: { 'last-modified': null } } ]
 ```
 
-Copy the first `id` value into `account.left` in `cupcake-ui/src/config.js`
+Copy the account `id` (second row from the top) value into `account.left` in `cupcake-ui/src/config.js`
 
 Create another account with `npm run new`
 
-Copy the account id into `accounts.right`
+Copy the account `id` into `accounts.right`
 
 Start the app.
 
-`npm run start`
+```
+npm run start
+```
 
-This will compile and start the app on `http//:localhost:3000`
+This will compile and start the app on: http://localhost:3000
+
+Read the api docs on: https://docs.developer.todaqfinance.net
+
+Have fun!
