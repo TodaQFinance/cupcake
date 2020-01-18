@@ -7,24 +7,40 @@ import Bakery from './components/Bakery';
 import CupcakeTransfer from './components/CupcakeTransfer';
 
 class App extends Component {
-  state = {
-    cupcake: cupcakeBase,
-    left: {
-      account: '', // FIXME
-      cupcakes: [],
-    },
-    right: {
-      account: '', // FIXME
-      cupcakes: [],
-    },
-  };
+  constructor(props) {
+    super(props)
+    this.state = {
+      cupcake: cupcakeBase,
+      left: {
+        account:'1234', // FIXME
+        cupcakes: [{
+          id: '64b85aaf895cbd5ff5a9fcdd9fa66d5e2a5593b46c65a4e29be750162c0c5104'
+        },{
+          ...cupcakeBase,
+          id: 1,
+          flavour: "Vanilla"
+        }, {
+          ...cupcakeBase,
+          id: 2,
+          icing: "Chocolate"
+        }, {
+          ...cupcakeBase,
+          id: 3
+        }],
+      },
+      right: {
+        account: "5678", // FIXME
+        cupcakes: [{...cupcakeBase, id: 4, sprinkles: { colour: "Red", quantity: 40}}, {...cupcakeBase, id: 5}]
+      }
+    };
+  }
 
   onBake = (cupcake) => {
     console.log('Baking Cupcake', cupcake);
   };
 
   onTransfer = (fromAccount, toAccount, cupcake) => {
-    // console.log("Transfer Cupcake", fromAccount, toAccount, cupcake);
+    console.log("Transfer Cupcake", fromAccount, toAccount, cupcake);
   };
 
   onSelected = (cupcake) => {

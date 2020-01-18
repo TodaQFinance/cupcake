@@ -3,44 +3,59 @@ import '../shared/styles/CupcakeTransfer.css';
 import 'request-promise';
 
 import AccountPanel from './AccountPanel';
+import initiateTransaction from '../lib/helpers/transactions/initiateTransaction';
+
+import getFilesByAccount from '../lib/helpers/accounts/getFilesByAccount'
+import { objectExpression } from '@babel/types';
 
 class CupcakeTransfer extends Component {
-  state = {
-    leftAccount: this.props.left && this.props.left.account,
-    rightAccount: this.props.right && this.props.right.account,
-    selectedAccount: -1,
-    selectedCupcake: null,
-    left: this.props.left,
-    right: this.props.right,
-  };
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      leftAccount: this.props.left && this.props.left.account,
+      rightAccount: this.props.right && this.props.right.account,
+      selectedAccount: -1,
+      selectedCupcake: null,
+      left: this.props.left,
+      right: this.props.right,
+    };
+  }
   onLoad = (side, account) => {
-    const that = this;
-    // FIXME
+    getFilesByAccount(account).then(data => {
+      const cupcakes_from_server = data.map(x => {return {... x.attributes.payload, id:x.id}});
+      this.setState(state => (state[side].cupcakes = cupcakes_from_server, state));
+    });
   };
 
   onCupcakeSelect = (account, cupcake) => {
-    alert(JSON.stringify(cupcake));
+    // alert(JSON.stringify(cupcake));
 
     this.setState({
       selectedAccount: account,
-      selectedCupcake: cupcake,
+      selectedCupcake: cupcake
     });
 
-    // if(this.props.onCupcakeSelect) { this.props.onCupcakeSelect(cupcake); }
+    if (this.props.onCupcakeSelect) { this.props.onCupcakeSelect(cupcake); }
   };
 
   onTransfer = (fromAccount, toAccount, cupcake) => {
-    const { id } = cupcake;
+
+    // const { id } = cupcake;
     const { onTransfer } = this.props;
     console.log('tx');
     console.log(fromAccount, toAccount, cupcake);
     if (fromAccount && toAccount && cupcake) {
-      // FIXME
-      // base
-      if (onTransfer) {
-        onTransfer(fromAccount, toAccount, cupcake);
-      }
+      initiateTransaction(fromAccount, toAccount, cupcake.id)
+        .then(res => {
+          if (res) {
+            console.log(`transfered cupcake ${cupcake.id} from account ${fromAccount} to account ${toAccount}`)
+          }
+        })
+        .finally(() => {
+          if (onTransfer) {
+            onTransfer(fromAccount, toAccount, cupcake);
+          }
+        });
     }
   };
 

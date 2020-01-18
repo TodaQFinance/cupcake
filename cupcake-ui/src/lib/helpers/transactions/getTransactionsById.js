@@ -1,12 +1,7 @@
-const axios = require('axios');
+const axios = require('../../axios');
 
 const getTransactionsById = id => axios
-  .get(`${process.env.API_URL}/transactions/${id}`, {
-    headers: {
-      'Content-Type': 'application/json',
-      'x-api-key': process.env.API_KEY,
-    },
-  })
+  .get(`/transactions/${id}`, {})
   .then(res => res.data.data)
   .catch(error => console.log(error));
 

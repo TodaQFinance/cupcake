@@ -1,4 +1,4 @@
-const axios = require('axios');
+const axios = require('../../axios');
 
 const requestBody = {
     data: {
@@ -22,19 +22,17 @@ const requestBody = {
     }
 };
 
-const createFile = (payload, owner, fileType) => {
+const createFile = (payload, initialAccount, fileType) => {
+    
+    // (1/2) Update the relevant fields of body with the arguments above
     let body = requestBody;
-    body['data']['attributes']['payload'] = payload;
-    body['data']['relationships']['initial-account']['data']['id'] = owner;
-    body['data']['relationships']['file-type']['data']['id'] = fileType;
 
-    return axios.post(`${process.env.API_URL}/files`, body, {
-        headers: {
-            'Content-Type': 'application/json',
-            'x-api-key': process.env.API_KEY,
-        }
-    })
-    .then(res => res.data.data)
-    .catch(error => console.log(error))};
+    // (2/2) Replace FIXME below with the appropriate API path
+    let path = '';
+
+    return axios.post(path, body, {})
+        .then(res => res.data.data)
+        .catch(error => console.log(error))
+};
 
 module.exports = createFile;
