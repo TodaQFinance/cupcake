@@ -12,7 +12,7 @@ class App extends Component {
     this.state = {
       cupcake: cupcakeBase,
       left: {
-        account: cfg.accountId0, 
+        account: cfg.accounts.left, 
         cupcakes: [{
           id: '64b85aaf895cbd5ff5a9fcdd9fa66d5e2a5593b46c65a4e29be750162c0c5104'
         },{
@@ -29,7 +29,7 @@ class App extends Component {
         }],
       },
       right: {
-        account: cfg.accountId1,
+        account: cfg.accounts.right,
         cupcakes: [{...cupcakeBase, id: 4, sprinkles: { colour: "Red", quantity: 40}}, {...cupcakeBase, id: 5}]
       }
     };

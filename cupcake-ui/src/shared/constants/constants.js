@@ -11,7 +11,7 @@ export const cupcakeBase = {
     colour: 'Blue',
     ignited: true,
   },
-  address: cfg.accountId0,
+  address: cfg.accounts.left,
 };
 
 export const flavourColours = { Chocolate: '#FF0000', Vanilla: '#FFFFBB' };
