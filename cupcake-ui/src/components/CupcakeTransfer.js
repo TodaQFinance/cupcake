@@ -23,7 +23,7 @@ class CupcakeTransfer extends Component {
   onLoad = (side, account) => {
     getFilesByAccount(account).then(data => {
       const cupcakes_from_server = data.map(x => {return {... x.attributes.payload, id:x.id}});
-      this.setState(state => (state.left.cupcakes = cupcakes_from_server, state));
+      this.setState(state => (state[side].cupcakes = cupcakes_from_server, state));
     });
   };
 
@@ -45,39 +45,17 @@ class CupcakeTransfer extends Component {
     console.log('tx');
     console.log(fromAccount, toAccount, cupcake);
     if (fromAccount && toAccount && cupcake) {
-      initiateTransaction({
-        data: {
-          attributes: {
-            metadata: {}
-          },
-          relationships: {
-            sender: {
-              type: 'account',
-              id: fromAccount
-            },
-            recipient: {
-              type: 'account',
-              id: toAccount
-            },
-            files: {
-              data: [{
-                type: 'file',
-                id: cupcake.id
-              }]
-            }
+      initiateTransaction(fromAccount, toAccount, cupcake.id)
+        .then(res => {
+          if (res) {
+            console.log(`transfered cupcake ${cupcake.id} from account ${fromAccount} to account ${toAccount}`)
           }
-        }
-      })
-      .then(res => {
-        if (res) {
-          console.log(`transfered cupcake ${cupcake.id} from account ${fromAccount} to account ${toAccount}`)
-        }
-      })
-      .finally(() => {
-        if (onTransfer) {
-          onTransfer(fromAccount, toAccount, cupcake);
-        }
-      });
+        })
+        .finally(() => {
+          if (onTransfer) {
+            onTransfer(fromAccount, toAccount, cupcake);
+          }
+        });
     }
   };
 
