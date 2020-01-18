@@ -1,3 +1,4 @@
+const cfg = require('../../config');
 export const cupcakeBase = {
   id: null,
   flavour: 'Chocolate',
@@ -10,7 +11,7 @@ export const cupcakeBase = {
     colour: 'Blue',
     ignited: true,
   },
-  address: '1234',
+  address: cfg.accountId0,
 };
 
 export const flavourColours = { Chocolate: '#FF0000', Vanilla: '#FFFFBB' };

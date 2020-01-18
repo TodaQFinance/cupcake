@@ -5,15 +5,14 @@ import { cupcakeBase } from './shared/constants/constants';
 
 import Bakery from './components/Bakery';
 import CupcakeTransfer from './components/CupcakeTransfer';
-
+import {default as cfg} from './config';
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
       cupcake: cupcakeBase,
       left: {
-        account:'1c8aee25-3716-4d88-ada5-d28a6dc90c41', // FIXME
-        // cupcakes : []
+        account: cfg.accountId0, 
         cupcakes: [{
           id: '64b85aaf895cbd5ff5a9fcdd9fa66d5e2a5593b46c65a4e29be750162c0c5104'
         },{
@@ -30,9 +29,8 @@ class App extends Component {
         }],
       },
       right: {
-        account: "01901822-a418-4da3-8ee8-3c433c0baf51",
-        cupcakes: []
-        // cupcakes: [{...cupcakeBase, id: 4, sprinkles: { colour: "Red", quantity: 40}}, {...cupcakeBase, id: 5}]
+        account: cfg.accountId1,
+        cupcakes: [{...cupcakeBase, id: 4, sprinkles: { colour: "Red", quantity: 40}}, {...cupcakeBase, id: 5}]
       }
     };
   }
